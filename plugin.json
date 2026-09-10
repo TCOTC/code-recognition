@@ -1,0 +1,39 @@
+{
+  "name": "code-recognition",
+  "author": "Jeffrey Chen",
+  "url": "https://github.com/TCOTC/code-recognition",
+  "version": "1.0.0",
+  "minAppVersion": "3.7.0",
+  "backends": [
+    "windows",
+    "linux",
+    "darwin",
+    "ios",
+    "android",
+    "harmony",
+    "docker",
+    "all"
+  ],
+  "frontends": [
+    "desktop",
+    "mobile",
+    "browser-desktop",
+    "browser-mobile",
+    "desktop-window",
+    "all"
+  ],
+  "disabledInPublish": false,
+  "displayName": {
+    "default": "Plugin Name",
+    "zh-CN": "插件名称"
+  },
+  "description": {
+    "default": "Plugin Description",
+    "zh-CN": "插件描述"
+  },
+  "readme": {
+    "default": "README.md",
+    "zh-CN": "README.zh-CN.md"
+  },
+  "funding": { "custom": ["https://mytemos.com/"] }
+}

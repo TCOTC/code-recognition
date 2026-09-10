@@ -1,0 +1,6 @@
+allowBuilds:
+  "@parcel/watcher": false
+  dprint: true
+  esbuild: false
+minimumReleaseAgeExclude:
+  - webpack@5.109.2
