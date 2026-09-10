@@ -1,6 +1,7 @@
 import {
     getActiveEditor,
     type IEventBusMap,
+    type IProtyle,
     Plugin,
     Setting,
     showMessage,
@@ -17,6 +18,8 @@ import type zhCN from "./i18n/zh-CN.json";
 import {CodeBlockRecognizer} from "./siyuan/CodeBlockRecognizer";
 
 const STORAGE_NAME = "config.json";
+const TOP_BAR_BUTTON_ID = "recognize-code-blocks";
+const BREADCRUMB_BUTTON_ID = "recognize-code-blocks";
 
 type WindowWithHighlightJs = Window & {
     hljs?: {
@@ -112,9 +115,9 @@ export default class CodeRecognitionPlugin extends Plugin {
         this.eventBus.on("click-editortitleicon", this.handleDocumentMenu);
         this.addCommand({
             langKey: "recognizeCurrent",
-            editorCallback: protyle =>
-                void this.runRecognition(() => this.recognizer?.recognizeCurrentOrSelected(protyle)),
+            editorCallback: protyle => this.recognizeCurrentOrSelected(protyle),
         });
+        this.syncEntryButtons();
         this.setting = this.createSetting();
     }
 
@@ -133,32 +136,100 @@ export default class CodeRecognitionPlugin extends Plugin {
         this.eventBus.off("paste", this.handlePaste);
         this.eventBus.off("click-blockicon", this.handleBlockMenu);
         this.eventBus.off("click-editortitleicon", this.handleDocumentMenu);
+        this.removeTopBar(TOP_BAR_BUTTON_ID);
+        this.removeBreadcrumbButton(BREADCRUMB_BUTTON_ID);
         this.recognizer?.destroy();
     }
 
     private createSetting(): Setting {
-        const setting = new Setting({confirmCallback: () => void this.saveConfig()});
+        const inputs = {
+            enabled: this.createCheckbox(this.config.enabled),
+            detectOnPaste: this.createCheckbox(this.config.detectOnPaste),
+            showTopBarButton: this.createCheckbox(this.config.showTopBarButton),
+            showBreadcrumbButton: this.createCheckbox(this.config.showBreadcrumbButton),
+        };
+        const resetInputs = () => {
+            inputs.enabled.checked = this.config.enabled;
+            inputs.detectOnPaste.checked = this.config.detectOnPaste;
+            inputs.showTopBarButton.checked = this.config.showTopBarButton;
+            inputs.showBreadcrumbButton.checked = this.config.showBreadcrumbButton;
+        };
+        const setting = new Setting({
+            confirmCallback: () => {
+                this.config = {
+                    enabled: inputs.enabled.checked,
+                    detectOnPaste: inputs.detectOnPaste.checked,
+                    showTopBarButton: inputs.showTopBarButton.checked,
+                    showBreadcrumbButton: inputs.showBreadcrumbButton.checked,
+                };
+                this.syncEntryButtons();
+                void this.saveConfig();
+            },
+            destroyCallback: resetInputs,
+        });
         setting.addItem({
             title: this.i18n.enabled,
             description: this.i18n.enabledDescription,
-            actionElement: this.createCheckbox(this.config.enabled, value => this.config.enabled = value),
+            actionElement: inputs.enabled,
         });
         setting.addItem({
             title: this.i18n.detectOnPaste,
             description: this.i18n.detectOnPasteDescription,
-            actionElement: this.createCheckbox(this.config.detectOnPaste, value => this.config.detectOnPaste = value),
+            actionElement: inputs.detectOnPaste,
+        });
+        setting.addItem({
+            title: this.i18n.showTopBarButton,
+            description: this.i18n.showTopBarButtonDescription,
+            actionElement: inputs.showTopBarButton,
+        });
+        setting.addItem({
+            title: this.i18n.showBreadcrumbButton,
+            description: this.i18n.showBreadcrumbButtonDescription,
+            actionElement: inputs.showBreadcrumbButton,
         });
 
         return setting;
     }
 
-    private createCheckbox(checked: boolean, onChange: (value: boolean) => void): HTMLInputElement {
+    private createCheckbox(checked: boolean): HTMLInputElement {
         const input = document.createElement("input");
         input.className = "b3-switch fn__flex-center";
         input.type = "checkbox";
         input.checked = checked;
-        input.addEventListener("change", () => onChange(input.checked));
         return input;
+    }
+
+    private recognizeCurrentOrSelected(protyle: IProtyle): void {
+        void this.runRecognition(() => this.recognizer?.recognizeCurrentOrSelected(protyle));
+    }
+
+    private syncEntryButtons(): void {
+        if (this.config.showTopBarButton) {
+            this.addTopBar({
+                id: TOP_BAR_BUTTON_ID,
+                icon: "iconCode",
+                title: this.i18n.recognizeCurrent,
+                callback: () => {
+                    const editor = getActiveEditor();
+                    if (editor) {
+                        this.recognizeCurrentOrSelected(editor.protyle);
+                    }
+                },
+            });
+        } else {
+            this.removeTopBar(TOP_BAR_BUTTON_ID);
+        }
+
+        if (this.config.showBreadcrumbButton) {
+            this.addBreadcrumbButton({
+                id: BREADCRUMB_BUTTON_ID,
+                icon: "iconCode",
+                title: this.i18n.recognizeCurrent,
+                callback: (_event, protyle) => this.recognizeCurrentOrSelected(protyle),
+            });
+        } else {
+            this.removeBreadcrumbButton(BREADCRUMB_BUTTON_ID);
+        }
     }
 
     private async runRecognition(

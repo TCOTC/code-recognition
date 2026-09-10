@@ -10,6 +10,7 @@ Automatically recognize SiYuan code block languages with a fast, offline local m
 * Uses SiYuan editor transactions, so language changes can be undone
 * Automatically processes only code blocks with an empty language and preserves every existing language
 * Provides a command that recognizes the current code block or code blocks within mixed block selections
+* Optionally adds top bar and editor breadcrumb buttons with the same behavior as the command
 * Force-recognizes code blocks and descendant code blocks from mixed selections in the block menu
 * Recognizes every regular code block in a document from the document title menu
 
@@ -23,6 +24,8 @@ If automatic recognition does not run, place the caret in a code block or select
 
 * Enable plugin
 * Recognition on paste
+* Show top bar button (off by default)
+* Show breadcrumb button (off by default)
 
 Markdown uses the same confidence checks as other code-block languages.
 
