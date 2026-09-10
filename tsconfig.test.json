@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": ".test-dist",
+    "rootDir": "."
+  },
+  "include": [
+    "src/config/**/*.ts",
+    "src/detector/LanguageDetector.ts",
+    "src/detector/RuleDetector.ts"
+  ]
+}

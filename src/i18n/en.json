@@ -1,2 +1,15 @@
 {
+  "recognizeCurrent": "Recognize current or selected code block languages",
+  "recognizeBlockMenu": "Recognize code block languages",
+  "recognizeDocumentMenu": "Recognize code block languages in document",
+  "recognitionComplete": "Recognized and set the language of {count} code block(s)",
+  "noLanguageRecognized": "No code block languages need updating",
+  "enabled": "Enable plugin",
+  "enabledDescription": "Automatically recognize regular code blocks without a language",
+  "detectOnPaste": "Recognize on paste",
+  "detectOnPasteDescription": "Automatically recognize code pasted into existing or newly generated code blocks",
+  "loadConfigFailed": "Failed to load settings; defaults are being used",
+  "saveConfigFailed": "Failed to save settings",
+  "engineFallback": "Failed to load betlang; only rule-based recognition will be used",
+  "recognitionFailed": "Failed to update the code block language"
 }

@@ -8,3 +8,7 @@ package.zip
 index.css
 index.js
 /i18n
+/wasm
+/wasm-detector/target
+/.test-dist
+/rustup-init-code-recognition.exe

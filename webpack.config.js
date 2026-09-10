@@ -18,8 +18,10 @@ module.exports = (env, argv) => {
                     {from: "preview.png", to: "./dist/"},
                     {from: "icon.png", to: "./dist/"},
                     {from: "README*.md", to: "./dist/"},
+                    {from: "THIRD_PARTY-*-LICENSE", to: "./dist/[name][ext]"},
                     {from: "plugin.json", to: "./dist/"},
                     {from: "src/i18n/", to: "./dist/i18n/"},
+                    {from: "src/wasm/", to: "./dist/wasm/"},
                 ],
             }),
         );
@@ -38,6 +40,7 @@ module.exports = (env, argv) => {
             new CopyPlugin({
                 patterns: [
                     {from: "src/i18n/", to: "./i18n/"},
+                    {from: "src/wasm/", to: "./wasm/"},
                 ],
             }),
         );

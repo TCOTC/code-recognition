@@ -24,16 +24,15 @@
   ],
   "disabledInPublish": false,
   "displayName": {
-    "default": "Plugin Name",
-    "zh-CN": "插件名称"
+    "default": "Code Language Recognition",
+    "zh-CN": "代码块语言识别"
   },
   "description": {
-    "default": "Plugin Description",
-    "zh-CN": "插件描述"
+    "default": "Automatically recognize the language of code blocks using a fast, local model",
+    "zh-CN": "使用快速的本地模型自动识别代码块语言"
   },
   "readme": {
     "default": "README.md",
     "zh-CN": "README.zh-CN.md"
-  },
-  "funding": { "custom": ["https://mytemos.com/"] }
+  }
 }

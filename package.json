@@ -1,7 +1,7 @@
 {
   "name": "code-recognition",
   "version": "1.0.0",
-  "description": "This is a sample plugin for SiYuan (https://b3log.org/siyuan)",
+  "description": "Automatically recognize SiYuan code block languages with a fast local model",
   "main": "./src/index.ts",
   "scripts": {
     "format": "dprint fmt",
@@ -9,10 +9,16 @@
     "lint": "eslint . --fix --cache",
     "dev": "webpack --config webpack.config.js --mode development",
     "build": "webpack --config webpack.config.js --mode production",
+    "build:wasm": "node scripts/build-wasm.mjs",
     "typecheck": "tsc --noEmit",
+    "test": "tsc -p tsconfig.test.json && node --test tests/*.test.cjs",
     "push": "git push origin HEAD --tags"
   },
-  "keywords": [],
+  "keywords": [
+    "siyuan",
+    "code",
+    "language-detection"
+  ],
   "author": "Jeffrey Chen",
   "license": "MIT",
   "packageManager": "pnpm@11.22.0",
@@ -33,7 +39,7 @@
     "mini-css-extract-plugin": "^2.10.2",
     "sass": "^1.102.0",
     "sass-loader": "^17.0.0",
-    "siyuan": "1.2.3",
+    "siyuan": "1.2.7",
     "tslib": "^2.8.1",
     "typescript": "^6.0.3",
     "webpack": "^5.109.2",

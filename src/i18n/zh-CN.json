@@ -1,2 +1,15 @@
 {
+  "recognizeCurrent": "识别当前或选中代码块的语言",
+  "recognizeBlockMenu": "识别代码块语言",
+  "recognizeDocumentMenu": "识别文档内代码块语言",
+  "recognitionComplete": "已识别并设置 {count} 个代码块的语言",
+  "noLanguageRecognized": "没有需要更新的代码块语言",
+  "enabled": "启用插件",
+  "enabledDescription": "自动识别未设置语言的普通代码块",
+  "detectOnPaste": "粘贴时识别",
+  "detectOnPasteDescription": "在已有代码块中粘贴或粘贴生成代码块后自动识别",
+  "loadConfigFailed": "加载配置失败，已使用默认配置",
+  "saveConfigFailed": "保存配置失败",
+  "engineFallback": "betlang 加载失败，将仅使用规则识别",
+  "recognitionFailed": "更新代码块语言失败"
 }

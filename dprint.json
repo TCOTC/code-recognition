@@ -17,7 +17,11 @@
     "**/dist",
     "**/pnpm-lock.yaml",
     "index.js",
-    "index.css"
+    "index.css",
+    "src/wasm/**",
+    "wasm/**",
+    ".test-dist/**",
+    "docs/**"
   ],
   "typescript": {
     "quoteStyle": "preferDouble",
