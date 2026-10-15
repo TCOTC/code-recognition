@@ -12,7 +12,7 @@
 | edition / MSRV | edition 2024 / rust-version 1.88 |
 | 依赖 | 只有 `fearless_simd = "0.4"` |
 | 下载 | `cargo add betlang@0.1.1`，或 <https://crates.io/api/v1/crates/betlang/0.1.1/download> |
-| 本机解包副本 | `C:\Users\Admin\zed-src\.betlang-src\x\betlang-0.1.1\` |
+| 本机解包副本 | 曾为 `C:\Users\Admin\zed-src\.betlang-src\x\betlang-0.1.1\`，随 zed-src 于 2026-10-16 删除；其中 `tests/fixtures/languages/` 已存档到 `docs/scripts/fixtures/languages/`（见该目录 `README.md`） |
 
 ## 2. 公开 API（就三个东西）
 

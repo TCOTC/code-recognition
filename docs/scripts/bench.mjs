@@ -5,10 +5,10 @@
 import { Magika } from "magika";
 import { readFile, readdir } from "node:fs/promises";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-// 【按需修改】betlang crate 在本机的解包路径
-const FIXTURES =
-  "C:/Users/Admin/zed-src/.betlang-src/x/betlang-0.1.1/tests/fixtures/languages";
+// betlang 的测试语料，已随本目录存档（fixtures/languages），不再需要改路径
+const FIXTURES = fileURLToPath(new URL("./fixtures/languages", import.meta.url));
 
 // fixture 文件名 -> 期望的 Magika 标签
 const EXPECTED = {

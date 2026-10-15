@@ -2,9 +2,13 @@
 // 运行：node hljs-auto.cjs
 const vm = require("node:vm");
 const fs = require("node:fs");
+const path = require("node:path");
 
 // 【按需修改】SiYuan 自带的 highlight.js 目录
 const p = "D:/CodeProjects/siyuan/app/stage/protyle/js/highlight.js/";
+
+// 语料已随本目录存档（fixtures/languages），不再需要改路径
+const SNIPPET = path.join(__dirname, "fixtures", "languages", "rust.rs");
 
 const sandbox = { window: {}, self: {}, console };
   sandbox.globalThis = sandbox;
@@ -15,10 +19,7 @@ for (const f of ["highlight.min.js", "third-languages.js"]) {
 }
 const hljs = sandbox.hljs || sandbox.window.hljs;
 
-const snippet = fs.readFileSync(
-  "C:/Users/Admin/zed-src/.betlang-src/x/betlang-0.1.1/tests/fixtures/languages/rust.rs",
-  "utf8",
-);
+const snippet = fs.readFileSync(SNIPPET, "utf8");
 const big = snippet.repeat(20); // 约 7KB，模拟一个真实代码块
 
 const time = (label, fn, n = 5) => {

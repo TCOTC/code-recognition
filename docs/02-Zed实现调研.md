@@ -7,7 +7,8 @@ Zed now detects its language automatically.” 本项目的策略层可以直接
 
 | 项 | 值 |
 |---|---|
-| 本地副本 | `C:\Users\Admin\zed-src`（浅克隆） |
+| 本地副本 | 曾为 `C:\Users\Admin\zed-src`（浅克隆，638 MB），**已于 2026-10-16 删除** |
+| 重新获取 | `git init zed-src; cd zed-src; git remote add origin https://github.com/zed-industries/zed.git; git fetch --depth 1 origin 52b2927a1bac46be5d50ad341ac00b665e13764b; git checkout FETCH_HEAD`（可复现同一 commit，本文行号以此为准） |
 | commit | `52b2927a1bac46be5d50ad341ac00b665e13764b`（2026-09-09） |
 | 相关 PR | [#61201](https://github.com/zed-industries/zed/pull/61201)（2026-07-20 合并）→ [#61351](https://github.com/zed-industries/zed/pull/61351)（同日回滚）→ [#61412](https://github.com/zed-industries/zed/pull/61412)（2026-08-28 合并，当前实现） |
 | 更早的废弃方案 | [#52718](https://github.com/zed-industries/zed/pull/52718)（基于 tree-sitter 语法打分，未合并，代码里已无痕迹） |

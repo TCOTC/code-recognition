@@ -45,7 +45,7 @@ const ROOTS = [
   "C:/Users/Admin/go/pkg/mod",
   "D:/CodeProjects",
   "C:/Users/Admin/.vscode/extensions",
-  "C:/Users/Admin/zed-src",
+  // 2026-10-16 移除 "C:/Users/Admin/zed-src"：该 Zed 源码浅克隆已删除（曾用于扩充长尾语料）
 ];
 const PER_LANG = 10;
 const SIZE = 1024; // 只取前 1KB，模拟真实代码块

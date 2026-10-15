@@ -29,8 +29,8 @@
 | 脚本 | 常量 | 本机默认值 |
 |---|---|---|
 | `hljs-langs.cjs` / `coverage.cjs` / `hljs-auto.cjs` | `path` / `p` | `D:/CodeProjects/siyuan/app/stage/protyle/js/highlight.js/` |
-| `bench.mjs` | `FIXTURES` | `C:/Users/Admin/zed-src/.betlang-src/x/betlang-0.1.1/tests/fixtures/languages` |
-| `fallback-eval*.cjs` / `rule-vs-hljs.cjs` | `ROOTS` | `C:/Users/Admin/go/pkg/mod`、`D:/CodeProjects`、`C:/Users/Admin/.vscode/extensions`、`C:/Users/Admin/zed-src` |
+| `bench.mjs` | `FIXTURES` | 无需改：脚本自动定位随本目录存档的 `fixtures/languages` |
+| `fallback-eval*.cjs` / `rule-vs-hljs.cjs` | `ROOTS` | `C:/Users/Admin/go/pkg/mod`、`D:/CodeProjects`、`C:/Users/Admin/.vscode/extensions`（原来的第 4 个 ROOT `C:/Users/Admin/zed-src` 已随源码副本删除而移除，见下） |
 
 ## 运行示例
 
@@ -50,6 +50,11 @@ node bench.mjs
 
 ## 说明
 
+- 语料（betlang 的 48 个语言样本）已随本目录存档在 `fixtures/languages/`，来源与许可见
+  `fixtures/README.md`。原先它只存在于本机解包的 betlang crate
+  （`C:\Users\Admin\zed-src\.betlang-src\x\betlang-0.1.1\`）里，该 638 MB 的 Zed 源码浅克隆已于
+  2026-10-16 删除，故把语料随插件存档；`fallback-eval*.cjs` / `rule-vs-hljs.cjs` 里当时用来
+  扩充长尾语料的 `zed-src` ROOT 也一并移除。
 - `hljs-*.cjs` 用 `node:vm` 在沙箱里执行 SiYuan 的 `highlight.min.js`，
   因为它是浏览器 UMD bundle，直接 `require` 会因为缺少 `window` 失败。
 - `bench.mjs` 的语料是 **betlang 自己的测试集**，对 betlang 有利，

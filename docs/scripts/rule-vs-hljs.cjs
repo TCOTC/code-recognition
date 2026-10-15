@@ -105,7 +105,7 @@ const CASES = [
   { ext: ".coffee", lang: "coffeescript" },
 ];
 const ROOTS = ["C:/Users/Admin/go/pkg/mod", "D:/CodeProjects",
-  "C:/Users/Admin/.vscode/extensions", "C:/Users/Admin/zed-src"];
+  "C:/Users/Admin/.vscode/extensions"];   // 2026-10-16 移除 "C:/Users/Admin/zed-src"（源码浅克隆已删除）
 const PER_LANG = 10;
 const SIZE = 1024;
 

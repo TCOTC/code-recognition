@@ -1,7 +1,10 @@
 // 诊断：为什么 highlightAuto 老是选 moonbit？是否由 third-languages.js 引入？
 const vm = require("node:vm");
 const fs = require("node:fs");
+const path = require("node:path");
 const DIR = "D:/CodeProjects/siyuan/app/stage/protyle/js/highlight.js/";
+// 语料已随本目录存档（fixtures/languages），不再需要改路径
+const FIXTURES = path.join(__dirname, "fixtures", "languages");
 
 function load(extra) {
   const sandbox = { window: {}, self: {}, console };
@@ -18,12 +21,9 @@ function load(extra) {
 const SAMPLES = {
   "纯英文散文": "Hello world, this is just ordinary english prose written by a human being. " +
     "It contains no code at all, only sentences and paragraphs and words. ".repeat(3),
-  "Rust 代码": fs.readFileSync(
-    "C:/Users/Admin/zed-src/.betlang-src/x/betlang-0.1.1/tests/fixtures/languages/rust.rs", "utf8"),
-  "Python 代码": fs.readFileSync(
-    "C:/Users/Admin/zed-src/.betlang-src/x/betlang-0.1.1/tests/fixtures/languages/python.py", "utf8"),
-  "Go 代码": fs.readFileSync(
-    "C:/Users/Admin/zed-src/.betlang-src/x/betlang-0.1.1/tests/fixtures/languages/go.go", "utf8"),
+  "Rust 代码": fs.readFileSync(path.join(FIXTURES, "rust.rs"), "utf8"),
+  "Python 代码": fs.readFileSync(path.join(FIXTURES, "python.py"), "utf8"),
+  "Go 代码": fs.readFileSync(path.join(FIXTURES, "go.go"), "utf8"),
 };
 
 for (const withThird of [false, true]) {
