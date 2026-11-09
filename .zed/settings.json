@@ -1,9 +1,0 @@
-{
-  "lsp": {
-    "eslint": {
-      "settings": {
-        "onIgnoredFiles": "off"
-      }
-    }
-  }
-}
